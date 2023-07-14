@@ -7,8 +7,10 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
 
+    @IBOutlet weak var currencyOneView: PrimaryTextFieldView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
