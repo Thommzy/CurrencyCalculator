@@ -23,6 +23,7 @@
 		FA9C670F2A601A9600EEDB4D /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9C670D2A601A9600EEDB4D /* HomeViewController.xib */; };
 		FAFAFDE42A652F9F005AB094 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FAFAFDE32A652F9F005AB094 /* Realm */; };
 		FAFAFDE62A652F9F005AB094 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FAFAFDE52A652F9F005AB094 /* RealmSwift */; };
+		FAFAFDE92A65300D005AB094 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = FAFAFDE82A65300D005AB094 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAFAFDE92A65300D005AB094 /* Alamofire in Frameworks */,
 				FAFAFDE62A652F9F005AB094 /* RealmSwift in Frameworks */,
 				FAFAFDE42A652F9F005AB094 /* Realm in Frameworks */,
 			);
@@ -154,6 +156,7 @@
 			packageProductDependencies = (
 				FAFAFDE32A652F9F005AB094 /* Realm */,
 				FAFAFDE52A652F9F005AB094 /* RealmSwift */,
+				FAFAFDE82A65300D005AB094 /* Alamofire */,
 			);
 			productName = Calculator;
 			productReference = FA9C66F42A6013A300EEDB4D /* Calculator.app */;
@@ -185,6 +188,7 @@
 			mainGroup = FA9C66EB2A6013A300EEDB4D;
 			packageReferences = (
 				FAFAFDE22A652F9F005AB094 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				FAFAFDE72A65300D005AB094 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = FA9C66F52A6013A300EEDB4D /* Products */;
 			projectDirPath = "";
@@ -441,6 +445,14 @@
 				minimumVersion = 10.41.0;
 			};
 		};
+		FAFAFDE72A65300D005AB094 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -453,6 +465,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FAFAFDE22A652F9F005AB094 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		FAFAFDE82A65300D005AB094 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAFAFDE72A65300D005AB094 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
