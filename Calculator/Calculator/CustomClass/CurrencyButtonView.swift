@@ -17,12 +17,46 @@ final class CurrencyButtonView: UIView {
         return view
     }()
     
+    lazy var leftImageContainer: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    lazy var leftImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .red
+        return imageView
+    }()
+    
+    lazy var currency: UILabel = {
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 18)
+        label.textColor = .darkGray
+        return label
+    }()
+    
+    lazy var rightImageContainer: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    lazy var rightImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .clear
+        imageView.tintColor = .lightGray
+        return imageView
+    }()
+    
     private lazy var mainStackView = UIStackView.create(
         spacing: 5,
         axis: .horizontal,
         alignment: .fill,
         distribution: .fill,
-        views: []
+        views: [
+            leftImageContainer,
+            currency,
+            rightImageContainer
+        ]
     )
     
     @IBInspectable
@@ -32,6 +66,37 @@ final class CurrencyButtonView: UIView {
             baseView.layer.masksToBounds = true
         }
     }
+    
+    @IBInspectable
+    var leftImageCornerRadius: CGFloat = 0.0 {
+        didSet {
+            leftImage.layer.cornerRadius = 10
+            leftImage.layer.masksToBounds = true
+        }
+    }
+    
+    @IBInspectable
+    var currencyText: String? {
+        didSet {
+            currency.text = currencyText
+        }
+    }
+    
+    @IBInspectable
+    var customLeftImage: UIImage? {
+        didSet {
+            leftImage.image = customLeftImage
+        }
+    }
+    
+    @IBInspectable
+    var customRightImage: UIImage? {
+        didSet {
+            rightImage.image = customRightImage
+        }
+    }
+    
+    public var onTap:(() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,6 +113,7 @@ extension CurrencyButtonView {
     private func setupViews() {
         prepareViews()
         prepareConstraints()
+        setupActions()
     }
     
     private func prepareViews() {
@@ -57,6 +123,9 @@ extension CurrencyButtonView {
                 mainStackView
             ]
         )
+        
+        leftImageContainer.addSubview(leftImage)
+        rightImageContainer.addSubview(rightImage)
     }
     
     private func prepareConstraints() {
@@ -64,9 +133,32 @@ extension CurrencyButtonView {
             top: topAnchor,
             left: leftAnchor,
             bottom: bottomAnchor,
-            right: rightAnchor
+            right: rightAnchor,
+            paddingLeft: 16,
+            paddingRight: 16
         )
         
         mainStackView.constrainToSuperview()
+        
+        leftImage.constrainSize(width: 20, height: 20)
+        leftImage.centerXInSuperview()
+        leftImage.centerYInSuperview()
+        
+        rightImage.constrainSize(width: 25, height: 25)
+        rightImage.centerXInSuperview()
+        rightImage.centerYInSuperview()
+        
+        leftImageContainer.widthAnchor.constraint(equalTo: rightImageContainer.widthAnchor).isActive = true
+    }
+    
+    func setupActions() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        isUserInteractionEnabled = true
+        addGestureRecognizer(tap)
+    }
+    
+    @objc func tapped() {
+        guard let onTap = onTap else { return }
+        onTap()
     }
 }

@@ -56,6 +56,12 @@ extension UIView {
         ]
     }
     
+    func constraintsForHeight(_ height: CGFloat) -> Constraints {
+        return [
+            heightAnchor.constraint(equalToConstant: height),
+        ]
+    }
+    
     func constraintsForSize(size: CGSize) -> Constraints {
         return [
             widthAnchor.constraint(equalToConstant: size.width),
@@ -75,6 +81,13 @@ extension UIView {
     @discardableResult
     func constrainWidth(_ width: CGFloat) -> Constraints {
         let constraints = constraintsForWidth(width)
+        constrain(constraints)
+        return constraints
+    }
+    
+    @discardableResult
+    func constrainHeight(_ height: CGFloat) -> Constraints {
+        let constraints = constraintsForHeight(height)
         constrain(constraints)
         return constraints
     }

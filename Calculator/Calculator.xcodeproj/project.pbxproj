@@ -12,9 +12,11 @@
 		FA26D0A12A611F1300C583AC /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26D0A02A611F1300C583AC /* UIStackView+Extension.swift */; };
 		FA26D0A32A6122D200C583AC /* CurrencyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26D0A22A6122D200C583AC /* CurrencyTextField.swift */; };
 		FA26D0A52A612A1C00C583AC /* CurrencyButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26D0A42A612A1C00C583AC /* CurrencyButtonView.swift */; };
+		FA69A0C42A616378007638B4 /* RounedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA69A0C32A616378007638B4 /* RounedView.swift */; };
+		FA69A0C62A616987007638B4 /* UnderlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA69A0C52A616987007638B4 /* UnderlinedButton.swift */; };
+		FA69A0C82A6190E8007638B4 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA69A0C72A6190E8007638B4 /* RoundedButton.swift */; };
 		FA9C66F82A6013A300EEDB4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C66F72A6013A300EEDB4D /* AppDelegate.swift */; };
 		FA9C66FA2A6013A300EEDB4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C66F92A6013A300EEDB4D /* SceneDelegate.swift */; };
-		FA9C66FC2A6013A300EEDB4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C66FB2A6013A300EEDB4D /* ViewController.swift */; };
 		FA9C67012A6013A500EEDB4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA9C67002A6013A500EEDB4D /* Assets.xcassets */; };
 		FA9C67042A6013A500EEDB4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA9C67022A6013A500EEDB4D /* LaunchScreen.storyboard */; };
 		FA9C670E2A601A9600EEDB4D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C670C2A601A9600EEDB4D /* HomeViewController.swift */; };
@@ -27,10 +29,12 @@
 		FA26D0A02A611F1300C583AC /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		FA26D0A22A6122D200C583AC /* CurrencyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTextField.swift; sourceTree = "<group>"; };
 		FA26D0A42A612A1C00C583AC /* CurrencyButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyButtonView.swift; sourceTree = "<group>"; };
+		FA69A0C32A616378007638B4 /* RounedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RounedView.swift; sourceTree = "<group>"; };
+		FA69A0C52A616987007638B4 /* UnderlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedButton.swift; sourceTree = "<group>"; };
+		FA69A0C72A6190E8007638B4 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		FA9C66F42A6013A300EEDB4D /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA9C66F72A6013A300EEDB4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA9C66F92A6013A300EEDB4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FA9C66FB2A6013A300EEDB4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FA9C67002A6013A500EEDB4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA9C67032A6013A500EEDB4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA9C67052A6013A500EEDB4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +59,9 @@
 				FA26D09A2A603E6A00C583AC /* PrimaryTextField.swift */,
 				FA26D0A22A6122D200C583AC /* CurrencyTextField.swift */,
 				FA26D0A42A612A1C00C583AC /* CurrencyButtonView.swift */,
+				FA69A0C32A616378007638B4 /* RounedView.swift */,
+				FA69A0C52A616987007638B4 /* UnderlinedButton.swift */,
+				FA69A0C72A6190E8007638B4 /* RoundedButton.swift */,
 			);
 			path = CustomClass;
 			sourceTree = "<group>";
@@ -100,7 +107,6 @@
 				FA9C67102A601B8400EEDB4D /* Scenes */,
 				FA9C66F72A6013A300EEDB4D /* AppDelegate.swift */,
 				FA9C66F92A6013A300EEDB4D /* SceneDelegate.swift */,
-				FA9C66FB2A6013A300EEDB4D /* ViewController.swift */,
 				FA9C67002A6013A500EEDB4D /* Assets.xcassets */,
 				FA9C67022A6013A500EEDB4D /* LaunchScreen.storyboard */,
 				FA9C67052A6013A500EEDB4D /* Info.plist */,
@@ -196,11 +202,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA69A0C62A616987007638B4 /* UnderlinedButton.swift in Sources */,
 				FA26D09F2A603F3700C583AC /* UIView+Extension.swift in Sources */,
+				FA69A0C42A616378007638B4 /* RounedView.swift in Sources */,
 				FA26D0A12A611F1300C583AC /* UIStackView+Extension.swift in Sources */,
 				FA26D09B2A603E6A00C583AC /* PrimaryTextField.swift in Sources */,
-				FA9C66FC2A6013A300EEDB4D /* ViewController.swift in Sources */,
 				FA9C66F82A6013A300EEDB4D /* AppDelegate.swift in Sources */,
+				FA69A0C82A6190E8007638B4 /* RoundedButton.swift in Sources */,
 				FA26D0A52A612A1C00C583AC /* CurrencyButtonView.swift in Sources */,
 				FA9C66FA2A6013A300EEDB4D /* SceneDelegate.swift in Sources */,
 				FA26D0A32A6122D200C583AC /* CurrencyTextField.swift in Sources */,
