@@ -22,10 +22,9 @@ final class CurrencyButtonView: UIView {
         return view
     }()
     
-    lazy var leftImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = .red
-        return imageView
+    lazy var leftLabel: UILabel = {
+        let label = UILabel()
+        return label
     }()
     
     lazy var currency: UILabel = {
@@ -67,13 +66,13 @@ final class CurrencyButtonView: UIView {
         }
     }
     
-    @IBInspectable
-    var leftImageCornerRadius: CGFloat = 0.0 {
-        didSet {
-            leftImage.layer.cornerRadius = 10
-            leftImage.layer.masksToBounds = true
-        }
-    }
+//    @IBInspectable
+//    var leftImageCornerRadius: CGFloat = 0.0 {
+//        didSet {
+//            leftImage.layer.cornerRadius = 10
+//            leftImage.layer.masksToBounds = true
+//        }
+//    }
     
     @IBInspectable
     var currencyText: String? {
@@ -83,9 +82,9 @@ final class CurrencyButtonView: UIView {
     }
     
     @IBInspectable
-    var customLeftImage: UIImage? {
+    var customFlag: String? {
         didSet {
-            leftImage.image = customLeftImage
+            leftLabel.text = "".countryFlag(rateCode: customFlag ?? "")
         }
     }
     
@@ -124,7 +123,7 @@ extension CurrencyButtonView {
             ]
         )
         
-        leftImageContainer.addSubview(leftImage)
+        leftImageContainer.addSubview(leftLabel)
         rightImageContainer.addSubview(rightImage)
     }
     
@@ -140,9 +139,9 @@ extension CurrencyButtonView {
         
         mainStackView.constrainToSuperview()
         
-        leftImage.constrainSize(width: 20, height: 20)
-        leftImage.centerXInSuperview()
-        leftImage.centerYInSuperview()
+//        leftImage.constrainSize(width: 20, height: 20)
+        leftLabel.centerXInSuperview()
+        leftLabel.centerYInSuperview()
         
         rightImage.constrainSize(width: 25, height: 25)
         rightImage.centerXInSuperview()

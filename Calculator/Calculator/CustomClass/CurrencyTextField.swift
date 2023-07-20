@@ -7,7 +7,11 @@
 
 import UIKit
 
+// MARK: - CurrencyTextField Class
+
+// A custom UITextField subclass to handle currency formatting and input validation.
 final class CurrencyTextField: UITextField, UITextFieldDelegate {
+    // MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,16 +23,18 @@ final class CurrencyTextField: UITextField, UITextFieldDelegate {
         setup()
     }
     
+    // MARK: - Setup Method
+    
+    // Setup the CurrencyTextField with required configurations.
     private func setup() {
         delegate = self
         keyboardType = .decimalPad
         addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
     }
     
-    @objc private func textFieldEditingChanged() {
-        formatText()
-    }
+    // MARK: - Formatting Method
     
+    // Format the text in the text field as currency.
     private func formatText() {
         guard let text = text, !text.isEmpty else {
             return
@@ -46,8 +52,14 @@ final class CurrencyTextField: UITextField, UITextFieldDelegate {
         }
     }
 
-
+    // MARK: - UITextFieldDelegate Methods
     
+    // Handle text change events to apply formatting.
+    @objc private func textFieldEditingChanged() {
+        formatText()
+    }
+    
+    // Validate text input and enforce formatting restrictions.
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else {
             return true

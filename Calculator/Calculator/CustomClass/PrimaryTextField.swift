@@ -63,6 +63,14 @@ final class PrimaryTextFieldView: UIView {
             mainTextField.placeholder = customPlaceHolder
         }
     }
+    
+    public func getText() -> String {
+        return mainTextField.text ?? ""
+    }
+    
+    public func setText(newText: String) {
+        mainTextField.text = newText
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
