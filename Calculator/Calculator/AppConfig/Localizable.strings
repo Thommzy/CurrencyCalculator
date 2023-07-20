@@ -5,3 +5,8 @@
   Created by Timothy Obeisun on 7/17/23.
   
 */
+
+
+"https" = "http";
+"baseURL" = "data.fixer.io";
+"latest" = "/api/latest";
