@@ -105,4 +105,13 @@ class HomeViewmodel {
         let data = results.first as? CurrencyRealm
         return data
     }
+    
+    func getAccessKey() -> String {
+        if let accessKey = Bundle.main.infoDictionary?["accessKey"] as? String {
+            // Use myValue in your code
+            return accessKey
+        }
+        return ""
+    }
+    
 }

@@ -38,10 +38,12 @@ final class HomeViewController: UIViewController {
         bindViewModel()
         setupActions()
         setupTimeLabel()
-        
-        let accessKey = "f697f31013afb0f8abdc9727f2e82025"
+      
+
+        let accessKey = homeViewModel.getAccessKey()
         let format = 1
         
+        debugPrint(accessKey, "accessKey-->>")
         homeViewModel.getRates(accessKey: accessKey, format: format)
         
         //        // Get the Realm file URL
