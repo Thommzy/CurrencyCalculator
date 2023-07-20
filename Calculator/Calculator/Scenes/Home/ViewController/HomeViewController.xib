@@ -15,6 +15,7 @@
                 <outlet property="currencyOne" destination="naz-Zf-mgM" id="Jlg-Yr-smG"/>
                 <outlet property="currencyTwo" destination="moV-Dg-oNL" id="um0-cl-nrE"/>
                 <outlet property="secondaryTextField" destination="tFf-kP-O0P" id="z7f-3b-yUT"/>
+                <outlet property="timeLabel" destination="zq3-gi-91F" id="qF0-LT-dAw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -98,7 +99,7 @@
                                                             <real key="value" value="5"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="rightLabelText" value="EUR"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="customPlaceHolder" value="1"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="customPlaceHolder" value="0.0"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -114,7 +115,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="you-KU-XJm">
                                             <rect key="frame" x="0.0" y="307" width="393" height="50"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tFf-kP-O0P" customClass="PrimaryTextFieldView" customModule="Calculator" customModuleProvider="target">
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tFf-kP-O0P" customClass="PrimaryTextFieldView" customModule="Calculator" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="0.0" width="361" height="50"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
@@ -122,7 +123,7 @@
                                                             <real key="value" value="5"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="rightLabelText" value="PLN"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="customPlaceHolder" value="4.2345"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="customPlaceHolder" value="0.0"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -248,9 +249,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="393" height="40"/>
                                                             <color key="tintColor" name="PrimaryBlue"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" title="Mid market exchange rate at 13:38 UTC ">
-                                                                <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
-                                                            </buttonConfiguration>
+                                                            <buttonConfiguration key="configuration" style="plain" title="Mid market exchange rate at 13:38 UTC "/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="customFont">
                                                                     <real key="value" value="13"/>
