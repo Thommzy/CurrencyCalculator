@@ -9,15 +9,22 @@ import UIKit
 import RealmSwift
 import Combine
 
+enum CurrencyType {
+    case sourceCurrency
+    case targetCurrency
+}
+
 final class HomeViewController: UIViewController {
     
     @IBOutlet weak var currencyOne: CurrencyButtonView!
     @IBOutlet weak var currencyTwo: CurrencyButtonView!
     @IBOutlet weak var baseTextField: PrimaryTextFieldView!
     @IBOutlet weak var secondaryTextField: PrimaryTextFieldView!
+    @IBOutlet weak var timeLabel: UnderlinedButton!
     
     let homeNetworkService = HomeNetworkService()
     let persistenceManager = PersistenceManager()
+    
     
     lazy var homeViewModel = HomeViewmodel(
         networkService: homeNetworkService,
@@ -30,59 +37,72 @@ final class HomeViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         bindViewModel()
         setupActions()
-        
+        setupTimeLabel()
         
         let accessKey = "f697f31013afb0f8abdc9727f2e82025"
         let format = 1
         
         homeViewModel.getRates(accessKey: accessKey, format: format)
         
-        // Get the Realm file URL
-        if let realmURL = Realm.Configuration.defaultConfiguration.fileURL {
-            let realmPath = realmURL.path
-            print("Realm file path: \(realmPath)")
-        }
+        //        // Get the Realm file URL
+        //        if let realmURL = Realm.Configuration.defaultConfiguration.fileURL {
+        //            let realmPath = realmURL.path
+        //            print("Realm file path: \(realmPath)")
+        //        }
     }
     
     private func bindViewModel() {
+        
+        homeViewModel.currencyOneCurrencyCode
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] currCode in
+                self?.baseTextField.rightLabelText = currCode
+                self?.currencyOne.currencyText = "\(currCode)"
+                self?.currencyOne.customFlag = currCode
+            }
+            .store(in: &cancellable)
+        
         homeViewModel.currencyTwoCurrencyCode
             .receive(on: DispatchQueue.main)
             .sink { [weak self] currCode in
                 self?.secondaryTextField.rightLabelText = currCode
                 self?.currencyTwo.currencyText = "\(currCode)"
                 self?.currencyTwo.customFlag = currCode
-                debugPrint("currencyOne--->>", currCode)
             }
             .store(in: &cancellable)
         
-        
-        homeViewModel.currencyTwoRate
+        homeViewModel.displayError
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] currRate in
-                self?.secondaryTextField.customPlaceHolder = "\(currRate)"
-                debugPrint("currencyTwoRate--->>", currRate)
-            }
-            .store(in: &cancellable)
-        
-        homeViewModel.currencyOneCurrencyCode
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] currCode in
-                self?.currencyOne.currencyText = "\(currCode)"
-                self?.currencyOne.customFlag = currCode
-                debugPrint("currencyTwoRate--->>", currCode)
-            }
-            .store(in: &cancellable)
-        
-        homeViewModel.rateArray
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] arr in
-                debugPrint("rateArray--->>", arr)
+            .sink { [weak self] errs in
+                self?.showAlert(title: "Error", subtitle: errs)
             }
             .store(in: &cancellable)
     }
     
+    private func setupTimeLabel() {
+        let currentTime = Date().getCurrentTimeInUTCFormat()
+        timeLabel.titleLabel?.text = "Mid market exchange rate at \(currentTime) UTC"
+        timeLabel.customFont = 13
+    }
+    
     @IBAction func convertBtnAction(_ sender: UIButton) {
-        debugPrint("convertBtnAction-->>")
+        self.evaluateData()
+    }
+    
+    private func evaluateData() {
+        if !baseTextField.getText().isEmpty  {
+            let exchangeRateProvider = ExchangeRateProvider(rates: homeViewModel.rateArray.value)
+            let currencyCalculator = CurrencyCalculator(exchangeRateProvider: exchangeRateProvider)
+            if let convertedAmount = currencyCalculator.convert(
+                amount: Double(self.baseTextField.getText()) ?? 0.0,
+                from: homeViewModel.currencyOneCurrencyCode.value,
+                to: homeViewModel.currencyTwoCurrencyCode.value
+            ) {
+                secondaryTextField.setText(newText: convertedAmount.convertDoubleToString())
+            }
+        } else {
+            secondaryTextField.setText(newText: "")
+        }
     }
 }
 
@@ -91,15 +111,45 @@ extension HomeViewController {
         currencyOne.onTap = { [weak self] in
             let vc = CountryListViewController(nibName: "CountryListViewController", bundle: nil)
             vc.list = self?.homeViewModel.rateArray.value ?? [(String, Double)]()
+            vc.backupList = self?.homeViewModel.rateArray.value ?? [(String, Double)]()
+            vc.delegate = self
+            vc.currencyType = .sourceCurrency
+            vc.currencyTuple = [
+                (
+                    self?.homeViewModel.currencyOneCurrencyCode.value,
+                    self?.homeViewModel.currencyTwoCurrencyCode.value
+                )
+            ]
             self?.present(vc, animated: true)
-            debugPrint("currencyOne--->>>")
         }
         
         currencyTwo.onTap = { [weak self] in
             let vc = CountryListViewController(nibName: "CountryListViewController", bundle: nil)
             vc.list = self?.homeViewModel.rateArray.value ?? [(String, Double)]()
+            vc.backupList = self?.homeViewModel.rateArray.value ?? [(String, Double)]()
+            vc.delegate = self
+            vc.currencyType = .targetCurrency
+            vc.currencyTuple = [
+                (
+                    self?.homeViewModel.currencyOneCurrencyCode.value,
+                    self?.homeViewModel.currencyTwoCurrencyCode.value
+                )
+            ]
             self?.present(vc, animated: true)
-            debugPrint("currencyTwo--->>>")
         }
+    }
+}
+
+extension HomeViewController: CountryListViewControllerDelegate {
+    func getCurrencyData(
+        currencyType: CurrencyType,
+        sourceCurrency: String,
+        targetCurrency: String
+    ) {
+        if currencyType == .targetCurrency {
+            secondaryTextField.setText(newText: "")
+        }
+        homeViewModel.currencyOneCurrencyCode.send(sourceCurrency)
+        homeViewModel.currencyTwoCurrencyCode.send(targetCurrency)
     }
 }
