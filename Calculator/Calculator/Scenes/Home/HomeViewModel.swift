@@ -17,11 +17,14 @@ class HomeViewmodel {
     var currencyTwoCurrencyCode = CurrentValueSubject<String, Never>("")
     var currencyTwoRate = PassthroughSubject<Double, Never>()
     var rateArray = CurrentValueSubject<[(String, Double)], Never>([(String, Double)]())
+    var hasSessionExpired = PassthroughSubject<Bool, Never>()
+    var isDatabaseEmpty = PassthroughSubject<Bool, Never>()
     var displayError = PassthroughSubject<String, Never>()
     
     // Dependency injection for network service and realm data manager.
     private let networkService: HomeNetworkServiceProtocol
     private let realmDataManager: PersistenceProtocol
+    let appLastOpenChecker = AppLastOpenChecker()
     
     // MARK: - Initialization
     
@@ -31,6 +34,20 @@ class HomeViewmodel {
     ) {
         self.networkService = networkService
         self.realmDataManager = realmDataManager
+    }
+    
+    func setupTimer() {
+        if appLastOpenChecker.hasExpired() {
+            // Handle the case when the app has expired
+            realmDataManager.clearDatabase()
+            hasSessionExpired.send(true)
+        } else {
+            let format = 1
+            getRates(
+                accessKey: getAccessKey(),
+                format: format
+            )
+        }
     }
     
     // MARK: - Get Rates
@@ -47,6 +64,7 @@ class HomeViewmodel {
                     // Convert the fetched data to a Realm object and save it to the database
                     if let currencyRealm = self?.convertToRealmObject(currency: rates) {
                         self?.realmDataManager.saveObject(currencyRealm)
+                        self?.getDataFromDB()
                     }
                     break
                 case .failure(let error):
@@ -56,14 +74,18 @@ class HomeViewmodel {
                 }
             }
         } else {
-            // Retrieve data from the database if it exists
-            let data = retrieveDataFromDB()
-            let rateList = convertRatesToTuple(rates: data?.rates)
-            currencyOneCurrencyCode.send(data?.base ?? "")
-            currencyTwoRate.send(data?.rates.first?.rate ?? 0.0)
-            currencyTwoCurrencyCode.send(data?.rates.first?.currencyCode ?? "")
-            rateArray.send(rateList)
+            self.getDataFromDB()
         }
+    }
+    
+    func getDataFromDB() {
+        // Retrieve data from the database if it exists
+        let data = retrieveDataFromDB()
+        let rateList = convertRatesToTuple(rates: data?.rates)
+        currencyOneCurrencyCode.send(data?.base ?? "")
+        currencyTwoRate.send(data?.rates.first?.rate ?? 0.0)
+        currencyTwoCurrencyCode.send(data?.rates.first?.currencyCode ?? "")
+        rateArray.send(rateList)
     }
     
     // MARK: - Conversion Methods

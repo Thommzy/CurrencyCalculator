@@ -10,9 +10,7 @@ import UIKit
 @IBDesignable
 class UnderlinedButton: UIButton {
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+    // MARK: - IBInspectable Properties
     
     @IBInspectable
     var customFont: CGFloat = 0.0 {
@@ -20,6 +18,8 @@ class UnderlinedButton: UIButton {
             underlineText(withFontSize: customFont)
         }
     }
+    
+    // MARK: - Underline Text Method
     
     func underlineText(withFontSize fontSize: CGFloat) {
         guard let text = self.titleLabel?.text else { return }

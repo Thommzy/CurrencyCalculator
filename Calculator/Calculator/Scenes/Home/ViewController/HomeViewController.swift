@@ -38,22 +38,31 @@ final class HomeViewController: UIViewController {
         bindViewModel()
         setupActions()
         setupTimeLabel()
-      
-
-        let accessKey = homeViewModel.getAccessKey()
-        let format = 1
+        homeViewModel.setupTimer()
         
-        debugPrint(accessKey, "accessKey-->>")
-        homeViewModel.getRates(accessKey: accessKey, format: format)
-        
-        //        // Get the Realm file URL
-        //        if let realmURL = Realm.Configuration.defaultConfiguration.fileURL {
-        //            let realmPath = realmURL.path
-        //            print("Realm file path: \(realmPath)")
-        //        }
     }
     
     private func bindViewModel() {
+        
+        homeViewModel.hasSessionExpired
+            .receive(on: DispatchQueue.main)
+            .filter {$0 == true}
+            .sink { [weak self] expire in
+                let format = 1
+                self?.homeViewModel.getRates(
+                    accessKey: self?.homeViewModel.getAccessKey() ?? "",
+                    format: format
+                )
+            }
+            .store(in: &cancellable)
+        
+        homeViewModel.hasSessionExpired
+            .receive(on: DispatchQueue.main)
+            .filter {$0 == false}
+            .sink { [weak self] expire in
+                self?.homeViewModel.getDataFromDB()
+            }
+            .store(in: &cancellable)
         
         homeViewModel.currencyOneCurrencyCode
             .receive(on: DispatchQueue.main)

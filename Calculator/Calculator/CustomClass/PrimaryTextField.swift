@@ -26,7 +26,7 @@ final class PrimaryTextFieldView: UIView {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .lightGray
-        label.constrainWidth(40)
+        label.constrainWidth(50)
         label.textAlignment = .right
         return label
     }()

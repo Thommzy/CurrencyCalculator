@@ -51,6 +51,17 @@ class PersistenceManager: PersistenceProtocol {
         return objects.isEmpty
     }
     
+    func clearDatabase() {
+        do {
+            try realm.write {
+                realm.deleteAll()
+            }
+        } catch {
+            // Handle any errors that might occur while clearing the database
+            print("Error clearing database: \(error)")
+        }
+    }
+    
     // MARK: - Migrations
     static func migrate(with migration: Migration) {}
 }

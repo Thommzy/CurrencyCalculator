@@ -9,14 +9,18 @@ import UIKit
 
 @IBDesignable
 class RoundedButton: UIButton {
-
+    
+    // MARK: - IBInspectable Properties
+    
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {
             layer.cornerRadius = cornerRadius
             layer.masksToBounds = cornerRadius > 0
         }
     }
-
+    
+    // MARK: - Initialization
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()

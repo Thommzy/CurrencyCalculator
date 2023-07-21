@@ -17,6 +17,8 @@
 		FA457E2F2A69E3DB00C55691 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA457E2E2A69E3DB00C55691 /* SearchManager.swift */; };
 		FA457E312A69E5B100C55691 /* CountryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA457E302A69E5B100C55691 /* CountryListViewModel.swift */; };
 		FA457E332A69EE3500C55691 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA457E322A69EE3500C55691 /* UIViewController+Extension.swift */; };
+		FA457E362A69FBA700C55691 /* UserDefaultsLastOpenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA457E352A69FBA700C55691 /* UserDefaultsLastOpenStorage.swift */; };
+		FA457E382A69FBF600C55691 /* AppLastOpenChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA457E372A69FBF600C55691 /* AppLastOpenChecker.swift */; };
 		FA69A0C42A616378007638B4 /* RounedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA69A0C32A616378007638B4 /* RounedView.swift */; };
 		FA69A0C62A616987007638B4 /* UnderlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA69A0C52A616987007638B4 /* UnderlinedButton.swift */; };
 		FA69A0C82A6190E8007638B4 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA69A0C72A6190E8007638B4 /* RoundedButton.swift */; };
@@ -61,6 +63,8 @@
 		FA457E2E2A69E3DB00C55691 /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		FA457E302A69E5B100C55691 /* CountryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListViewModel.swift; sourceTree = "<group>"; };
 		FA457E322A69EE3500C55691 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		FA457E352A69FBA700C55691 /* UserDefaultsLastOpenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsLastOpenStorage.swift; sourceTree = "<group>"; };
+		FA457E372A69FBF600C55691 /* AppLastOpenChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLastOpenChecker.swift; sourceTree = "<group>"; };
 		FA69A0C32A616378007638B4 /* RounedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RounedView.swift; sourceTree = "<group>"; };
 		FA69A0C52A616987007638B4 /* UnderlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedButton.swift; sourceTree = "<group>"; };
 		FA69A0C72A6190E8007638B4 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -146,6 +150,15 @@
 				FA457E2E2A69E3DB00C55691 /* SearchManager.swift */,
 			);
 			path = SearchManager;
+			sourceTree = "<group>";
+		};
+		FA457E342A69FB9500C55691 /* LastOpen */ = {
+			isa = PBXGroup;
+			children = (
+				FA457E352A69FBA700C55691 /* UserDefaultsLastOpenStorage.swift */,
+				FA457E372A69FBF600C55691 /* AppLastOpenChecker.swift */,
+			);
+			path = LastOpen;
 			sourceTree = "<group>";
 		};
 		FA9C66EB2A6013A300EEDB4D = {
@@ -245,6 +258,7 @@
 		FAFAFE012A655281005AB094 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				FA457E342A69FB9500C55691 /* LastOpen */,
 				FAFAFE022A655291005AB094 /* PersistenceProtocol.swift */,
 				FAFAFE042A655372005AB094 /* PersistenceManager.swift */,
 			);
@@ -391,9 +405,11 @@
 				FAFAFE092A6557E3005AB094 /* HomeNetworkService.swift in Sources */,
 				FA69A0C62A616987007638B4 /* UnderlinedButton.swift in Sources */,
 				FA26D09F2A603F3700C583AC /* UIView+Extension.swift in Sources */,
+				FA457E362A69FBA700C55691 /* UserDefaultsLastOpenStorage.swift in Sources */,
 				FAFAFDF22A653E7F005AB094 /* Endpoint.swift in Sources */,
 				FA69A0C42A616378007638B4 /* RounedView.swift in Sources */,
 				FA26D0A12A611F1300C583AC /* UIStackView+Extension.swift in Sources */,
+				FA457E382A69FBF600C55691 /* AppLastOpenChecker.swift in Sources */,
 				FAFAFE0D2A65A7D7005AB094 /* UIImage+Extension.swift in Sources */,
 				FA26D09B2A603E6A00C583AC /* PrimaryTextField.swift in Sources */,
 				FA9C66F82A6013A300EEDB4D /* AppDelegate.swift in Sources */,

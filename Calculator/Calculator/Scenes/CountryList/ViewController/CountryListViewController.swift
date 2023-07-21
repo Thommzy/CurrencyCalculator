@@ -24,7 +24,6 @@ class CountryListViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet weak var countryList: UITableView!
-    @IBOutlet weak var searchTextField: UITextField!
     
     // MARK: - Properties
     
