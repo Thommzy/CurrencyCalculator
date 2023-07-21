@@ -1,8 +1,8 @@
-# Calculator
+# CurrencyCalculator
 
 ## Description
 
-Calculator is a simple iOS app that allows users to get the latest currency rates. The app supports over 100 currencies and provides real-time exchange rates.
+CurrencyCalculator is a simple iOS app that allows users to get the latest currency rates. The app supports over 100 currencies and provides real-time exchange rates.
 
 ## Requirements
 
